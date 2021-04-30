@@ -1,0 +1,9 @@
+---
+
+- name: Configure cisco routers with ninja2 template
+  hosts: routers
+
+  tasks:
+    - name: Configure EIGRP
+      ios_config:
+        src: "eigrp_template.j2"
