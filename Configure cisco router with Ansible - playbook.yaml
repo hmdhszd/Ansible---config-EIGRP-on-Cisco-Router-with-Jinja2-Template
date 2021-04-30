@@ -4,7 +4,7 @@
   hosts: r1
 
   tasks:
-    - name: execute show running config on remote device
+    - name: config r1
       ios_config:
         lines:
           - router-id 1.1.1.1
@@ -27,7 +27,7 @@
       - "10.10.10.0 0.0.0.255"
 
   tasks:
-    - name: execute show running config on remote device
+    - name: config r2
       ios_config:
         lines:
           - "router-id {{ router_id }}"
