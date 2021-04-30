@@ -1,0 +1,6 @@
+router eigrp {{ as_number }}
+router-id {{ router_id }}
+
+{% for n in networks %}
+    network {{ n }}
+{% endfor %}
