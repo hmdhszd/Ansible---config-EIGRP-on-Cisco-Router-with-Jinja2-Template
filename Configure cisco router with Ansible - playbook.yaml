@@ -1,0 +1,47 @@
+---
+
+- name: Configure cisco router on r1
+  hosts: r1
+
+  tasks:
+    - name: execute show running config on remote device
+      ios_config:
+        lines:
+          - router-id 1.1.1.1
+          - network 100.100.100.0 0.0.0.255
+          - network 10.10.10.0 0.0.0.255
+        parents: router eigrp 1
+
+
+
+
+
+- name: Configure cisco router on r2
+  hosts: r2
+
+  vars:
+    as_number: 1
+    router_id: 2.2.2.2
+    networks:
+      - "200.200.200.0 0.0.0.255"
+      - "10.10.10.0 0.0.0.255"
+
+  tasks:
+    - name: execute show running config on remote device
+      ios_config:
+        lines:
+          - "router-id {{ router_id }}"
+          - "network {{ item }}"
+        parents: "router eigrp {{ as_number }}"
+      with_items:
+        - "{{ networks }}"
+
+
+
+
+
+
+
+
+
+
